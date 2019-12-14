@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,8 +13,27 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Image 2"),
         ),
-        body: Center(
-          child: Text("hello, world"),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
+                Center(
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: 'https://picsum.photos/250?image=9',
+                  ),
+                )
+              ],
+            ),
+            FadeInImage.assetNetwork(
+              placeholder: 'assets/loading.gif',
+              image: 'https://picsum.photos/250?image=9',
+            )
+          ],
         ),
       ),
     );
